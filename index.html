@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" charset="utf-8">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" charset="utf-8"
+        src="https://d461f6315130.us-east-1.captcha-sdk.awswaf.com/d461f6315130/_/jsapi.js" defer></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        // 读取特定名称的cookie
+        function getCookie(name) {
+            var cookieValue = null;
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.indexOf(name + '=') === 0) {
+                    cookieValue = cookie.substring(name.length + 1, cookie.length);
+                    break;
+                }
+            }
+            return cookieValue;
+        }
+
+
+
+        function showMyCaptcha() {
+            var container = document.querySelector("#my-captcha-container");
+
+            AwsWafCaptcha.renderCaptcha(container, {
+                apiKey: "kTDnOKmVwEJ2MLM3rFzBdpNlgP5ktpup8NgusGBDaEng23QzjqOCfT7qNdxglAn42DcRUL6QpASuYHe3QVt4up8Ui6mL957LnuAfeccKa8xMT/BmxrfDbjbk1SI20FipsWL5iWN97ztCyfgJY5ajWlrnEup96LsE+k/7hXU3H/68h60jIcrXmUYXbWEGXiuZuHogmUg2MMY8r7GCCODd0BjSCrfm1cfMGLc9rf2nrFbRScNImfuuJpid7oqsxzW9xf46vpcPy2bHwXbDKneiZLxPBlBV/N2EBI11fzeKpm49me/J/nc4laOXuCnKsuFAmpnZh4qU5EGp0JsE+6fiHw6B5pvtLYjo5+FlbkYyBQsgYzHAjSLImtQa4rI8GV/MU20Pe1lVq/SqPNXXdZ8BdvfdqU9gOPo+e64EI46WmuW6TrASC1OzGtO66iHFlnzlN7cfqhULQyvqQvYRbh2QK5HSInGdoXGu8OFICqt4cOKw4P+XokBq1Fp5ea/zoXQyg2xyfCKqze43O1CiviNISuTN4YqK9ccywe2BxfoDdhuDq4yzIhxKFhq2YDPZP7OOgjk/AIzmzmYnYu0qBKqFrULkwiAr5RwwjH/REk+4XnPnEohoJnfp8fDFgfPopruUGRtNzUi6u/057HklQYn0J7iSqQyEr3pNKCDJxW67P0A=_0_1",
+                onSuccess: captchaExampleSuccessFunction,
+                onError: captchaExampleErrorFunction,
+            });
+        }
+
+        function captchaExampleSuccessFunction(wafToken) {
+            // Captcha completed. wafToken contains a valid WAF token. Store it for
+            // use later or call AwsWafIntegration.fetch() to use it easily.
+            // It will expire after a time, so calling AwsWafIntegration.getToken()
+            // again is advised if the token is needed later on, outside of using the
+            // fetch wrapper.
+
+            // Use WAF token to access protected resources
+            /* const login_response = AwsWafIntegration.fetch("./get_login", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "text/json",
+                }
+            });
+            */
+            window.alert("在这里渲染登陆的页面html");
+
+        }
+
+        function captchaExampleErrorFunction(error) {
+            /* Do something with the error */
+        }
+        window.addEventListener("load", () => {
+            var access = getCookie('access');
+            if (access == null) {
+                access = "1";
+            }
+            access_num = parseInt(access, 10);
+            if (access_num >= 3) {
+                showMyCaptcha();
+            } else {
+                document.cookie = `access=${access_num + 1}`;
+                window.alert("请数据用户名和密码");
+            }
+
+        });
+    </script>
+
+    <div id="my-captcha-container">
+        <!-- The contents of this container will be replaced by the captcha widget -->
+    </div>
+    <p>checking</p>
+</body>
+
+</html>
