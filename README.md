@@ -18,3 +18,17 @@ https://docs.aws.amazon.com/zh_cn/waf/latest/developerguide/waf-js-challenge-api
 5. 继续刷新页面，页面弹出 这是您第 3 次访问该页面.
 6. 由于您已经三次访问了该页面，页面认为你频繁访问，为了限制您的访问，将显示拼图认证
 7. 只有您正确完成拼图认证，页面会弹出 在这里渲染登陆的页面html
+![配置api key](./assets/a2.png)
+
+# 配置过程
+1. 请如下图在WAF上配置api key
+![配置api key](./assets/a1.png)
+2. 在index.html 的head 引入依赖javascript 库
+```
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" charset="utf-8"
+        src="https://d461f6315130.us-east-1.captcha-sdk.awswaf.com/d461f6315130/_/jsapi.js" defer></script>
+</head>
+```
+3. 参考index.html 修改成您的代码
