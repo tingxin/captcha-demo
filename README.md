@@ -8,3 +8,13 @@
 
 # API 文档
 https://docs.aws.amazon.com/zh_cn/waf/latest/developerguide/waf-js-challenge-api-fetch-wrapper.html
+
+# 演示过程
+请在linux机器上运行，假设已经安装好python3.6+环境
+1. 在命令行输入 python3 -m http.server 5016
+2. 用浏览器打开localhost:5016
+3. 界面应该会弹出 这是您第 1 次访问该页面
+4. 继续刷新页面，页面弹出 这是您第 2 次访问该页面
+5. 继续刷新页面，页面弹出 这是您第 3 次访问该页面.
+6. 由于您已经三次访问了该页面，页面认为你频繁访问，为了限制您的访问，将显示拼图认证
+7. 只有您正确完成拼图认证，页面会弹出 在这里渲染登陆的页面html

@@ -59,16 +59,17 @@
             /* Do something with the error */
         }
         window.addEventListener("load", () => {
+            /* 这里通过cookie access变量来记录客户的访问次数 */
             var access = getCookie('access');
             if (access == null) {
                 access = "1";
             }
             access_num = parseInt(access, 10);
+            window.alert(`这是您第 ${access} 次访问这个页面`);
             if (access_num >= 3) {
                 showMyCaptcha();
             } else {
                 document.cookie = `access=${access_num + 1}`;
-                window.alert("请数据用户名和密码");
             }
 
         });
